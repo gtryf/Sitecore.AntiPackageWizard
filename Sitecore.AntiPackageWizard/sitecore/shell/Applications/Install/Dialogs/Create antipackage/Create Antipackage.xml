@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<control xmlns:def="Definition" xmlns="http://schemas.sitecore.net/Visual-Studio-Intellisense">
+  <Installer.CreateAntipackage>
+    <Script Src="/sitecore/shell/Applications/Install/installer.js" />
+    <WizardForm Application="Tools/Installer/AntipackageWizard" CodeBeside="Sitecore.AntiPackageWizard.Dialogs.CreateAntiPackage.CreateAntiPackageForm,Sitecore.AntiPackageWizard">
+
+      <WizardFormPage ID="LoadPackage" Header="Create Anti-package" Text="Select a package to scan.">
+        <WizardFormPadding>
+          <Literal class="scFieldLabel" Text="Name:"/>
+
+          <Edit ID="PackageFile" Width="100%"/>
+
+          <br/>
+          <div>
+            <Button ID="Browse" Header="Choose package" ToolTip="Choose a package that is already uploaded to your Sitecore installation." Click="antipackage:browse"/>
+            <Space/>
+            <Button ID="Upload" Header="Upload package" ToolTip="Upload a package from your local computer." Click="antipackage:upload"/>
+          </div>
+        </WizardFormPadding>
+      </WizardFormPage>
+
+      <WizardFormPage ID="Ready" Header="Create Anti-package" Text="Verify the package information before you click create.">
+        <WizardFormPadding>
+          <GridPanel class="scFormTable" Columns="2" CellPadding="2">
+
+            <Literal Text="Package name:" />
+            <Edit ID="PackageName" Width="100%" ReadOnly="true" GridPanel.Width="100%"/>
+
+            <Literal Text="Version:" />
+            <Edit ID="Version" Width="100%" ReadOnly="true"/>
+
+            <Literal Text="Author:" />
+            <Edit ID="Author" Width="100%" ReadOnly="true"/>
+
+            <Literal Text="Publisher:" />
+            <Edit ID="Publisher" Width="100%" ReadOnly="true"/>
+
+          </GridPanel>
+        </WizardFormPadding>
+      </WizardFormPage>
+
+      <WizardFormProgressPage ID="Installing" Header="Create Anti-package" Text="Please wait while the anti-package is created. This may take a few minutes." ActionText="Creating...">
+        <TaskMonitor ID="Monitor" />
+      </WizardFormProgressPage>
+
+      <WizardFormPage ID="LastPage" Header="Create Anti-package">
+        <WizardFormIndent>
+          <Border ID="SuccessMessage">
+            <Literal class="scFieldLabel sc-text-largevalue" Text="The anti-package has been built successfully."/>
+            <Border class="scFieldLabel">
+              <Literal Text="Click this button to download the anti-package:"/>
+              <Toolbutton Icon="Network/16x16/download.png" Tooltip="Download the anti-package" Click="antipackage:download"/>
+            </Border>
+          </Border>
+
+          <Border ID="FailureMessage" Style="color:#ca241c;display:none">
+          </Border>
+        </WizardFormIndent>
+      </WizardFormPage>
+
+    </WizardForm>
+  </Installer.CreateAntipackage>
+</control>
